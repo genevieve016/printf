@@ -5,6 +5,7 @@ void print_buffer(char buffer[], int *buff_ind);
 /**
  * _printf - main function to printf
  * @format: format string
+ *
  * Return: number of characters printed (excluding null byte)
  */
 
