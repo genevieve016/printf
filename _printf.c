@@ -14,9 +14,15 @@ int _printf(const char *format, ...)
 {
 	int i;
 
-	int printed = 0; int  printed_chars = 0;
+	int printed = 0;
+	int  printed_chars = 0;
 
-	int flags; int width; int precision; int size; int buff_ind = 0;
+	int flags;
+	int width;
+	int precision;
+	int size;
+	int buff_ind = 0;
+
 	va_list list;
 	char buffer[BUFF_SIZE];
 
