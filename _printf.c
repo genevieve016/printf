@@ -13,9 +13,9 @@ int _printf(const char *format, ...)
 {
 	int i;
 
-	printed = 0, printed_chars = 0;
+	int printed = 0; int  printed_chars = 0;
 
-	int flags, width, precision, size, buff_ind = 0;
+	int flags; int width; int precision; int size; int buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
 
@@ -55,6 +55,7 @@ int _printf(const char *format, ...)
 	va_end(list);
 
 	return (printed_chars);
+return (0);
 }
 
 /**
