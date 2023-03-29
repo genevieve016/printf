@@ -1,12 +1,16 @@
 #include "main.h"
 
+
 /**
- * get_precision - Calculates the precision for printing
- * @format: Formatted string in which to print the arguments
- * @i: List of arguments to be printed.
- * @list: list of arguments.
+ * handle_precision - Matches a precision modifier with
+ *                    its corresponding value.
+ * @args: A va_list of arguments.
+ * @modifier: A pointer to a potential precision modifier.
+ * @index: An index counter for the original format string.
  *
- * Return: Precision.
+ * Return: If a precision modifier is matched - its value.
+ *         If the precision modifier is empty, zero, or negative - 0.
+ *         Otherwise - -1.
  */
 
 int handle_precision(va_list args, const char *modifier, char *index)
@@ -47,4 +51,3 @@ int handle_precision(va_list args, const char *modifier, char *index)
 
 	return (value);
 }
-
