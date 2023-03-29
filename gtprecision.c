@@ -8,35 +8,43 @@
  *
  * Return: Precision.
  */
-int get_precision(const char *format, int *i, va_list list)
+
+int handle_precision(va_list args, const char *modifier, char *index)
 {
-	int curr_i = *i + 1;
-	int precision = -1;
+	int value = 0;
 
-	if (format[curr_i] != '.')
-		return (precision);
+	if (*modifier != '.')
+		return (-1);
 
-	precision = 0;
+	modifier++;
+	(*index)++;
 
-	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	if ((*modifier <= '0' || *modifier > '9') &&
+		 *modifier != '*')
 	{
-		if (is_digit(format[curr_i]))
-		{
-			precision *= 10;
-			precision += format[curr_i] - '0';
-		}
-		else if (format[curr_i] == '*')
-		{
-			curr_i++;
-			precision = va_arg(list, int);
-			break;
-		}
-		else
-			break;
+		if (*modifier == '0')
+			(*index)++;
+		return (0);
 	}
 
-	*i = curr_i - 1;
+	while ((*modifier >= '0' && *modifier <= '9') ||
+		   (*modifier == '*'))
+	{
+		(*index)++;
 
-	return (precision);
-return (0);
+		if (*modifier == '*')
+		{
+			value = va_arg(args, int);
+			if (value <= 0)
+				return (0);
+			return (value);
+		}
+
+		value *= 10;
+		value += (*modifier - '0');
+		modifier++;
+	}
+
+	return (value);
 }
+
